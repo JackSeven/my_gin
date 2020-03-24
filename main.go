@@ -4,27 +4,38 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
 func main() {
 	router := gin.Default()
 
-	//router.LoadHTMLGlob("view/*")
-
-	router.LoadHTMLFiles("view/index.html")
-
-	router.GET("/index", func(c *gin.Context) {
-		id := c.Query("id")
-		if id == "12" {
-			c.Redirect(http.StatusMovedPermanently, "http://www.baidu.com")
-		}
-
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title":   "文章标题",
-			"content": fmt.Sprintf("文章内容%s", id),
+	router.Use(middleWare())
+	{
+		router.GET("/index", func(c *gin.Context) {
+			id := c.Query("id")
+			c.JSON(http.StatusOK, gin.H{"ID":id})
 		})
-	})
+	}
 
 	router.Run(":6001")
+}
 
+// 自定义中间件
+func middleWare() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		t := time.Now()
+
+		fmt.Println("before middleware")
+
+		c.Set("request", "client_request")
+		c.Next()
+
+		status := c.Writer.Status()
+		fmt.Println("after middleware", status)
+
+		t2 := time.Since(t)
+
+		fmt.Println("time2:", t2)
+	}
 }
