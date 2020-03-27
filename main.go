@@ -6,6 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql" // 需要导入这个mysql库
 	"github.com/gin-gonic/gin"
 	"log"
+	"math/rand"
 	"net/http"
 )
 
@@ -55,9 +56,19 @@ func main() {
 		}else if action == "i" {
 			fmt.Println(action)
 
-			id, err := userAdd(UserInfo{
-				Userid:   2,
+			// 添加 2
+			id, err := userAdd1(UserInfo{
+				Userid:   rand.Intn(1000),
 				Nickname: "用户2",
+			})
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+
+			//	添加2
+			id, err := userAdd1(UserInfo{
+				Userid:   rand.Intn(1000),
+				Nickname: "用户方法2",
 			})
 			if err != nil {
 				log.Fatal(err.Error())
@@ -75,8 +86,8 @@ func main() {
 
 
 
-// 添加用户
-func userAdd(user UserInfo) (Id int, err error)  {
+// 添加用户方法1
+func userAdd1(user UserInfo) (Id int, err error)  {
 
 	db, err := sql.Open("mysql", "root:anling123@tcp(127.0.0.01)/test?charset=utf8")
 
@@ -86,19 +97,6 @@ func userAdd(user UserInfo) (Id int, err error)  {
 
 	defer db.Close()
 
-	// 插入方法 1
-	//sql := "insert into user(user_id, nickname) values (?,?)"
-	//rs, err := db.Exec(sql, user.Userid, user.Nickname)
-	//if err != nil {
-	//	fmt.Println(err.Error())
-	//}
-	//if id,_ :=rs.LastInsertId(); id >0 {
-	//	fmt.Println("ok")
-	//}
-	//return
-
-
-	// 插入方法 2
 	stmt, err:= db.Prepare("insert into user(user_id, nickname) values (?, ?)")
 
 	fmt.Println(user.Userid)
@@ -120,7 +118,31 @@ func userAdd(user UserInfo) (Id int, err error)  {
 
 	defer stmt.Close()
 	return
+}
 
+
+
+// 添加用户方法2
+func userAdd2(user UserInfo) (id int, err error)  {
+
+	db, err := sql.Open("mysql", "root:anling123@tcp(127.0.0.01)/test?charset=utf8")
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	defer db.Close()
+
+	//插入方法
+	sql := "insert into user(user_id, nickname) values (?,?)"
+	rs, err := db.Exec(sql, user.Userid, user.Nickname)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	if id,_ :=rs.LastInsertId(); id >0 {
+		fmt.Println("ok")
+	}
+	return
 }
 
 
