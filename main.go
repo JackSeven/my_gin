@@ -2,7 +2,8 @@ package main
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"  // 需要导入这个mysql库
+	"fmt"
+	_ "github.com/go-sql-driver/mysql" // 需要导入这个mysql库
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -43,17 +44,85 @@ func main() {
 		action := c.Query("action")
 
 		if action == "r" {
+			fmt.Println(action)
+
 			users, err := getAll()
 			if err != nil {
 				log.Fatal(err)
 			}
 			c.JSON(http.StatusOK, gin.H{"state":1,"data":users})
+
+		}else if action == "i" {
+			fmt.Println(action)
+
+			id, err := userAdd(UserInfo{
+				Userid:   2,
+				Nickname: "用户2",
+			})
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+
+			c.JSON(http.StatusOK, gin.H{"state":1, "data":id})
+
 		}
 
 	})
 
 	router.Run(":6001")
 }
+
+
+
+
+// 添加用户
+func userAdd(user UserInfo) (Id int, err error)  {
+
+	db, err := sql.Open("mysql", "root:anling123@tcp(127.0.0.01)/test?charset=utf8")
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	defer db.Close()
+
+	// 插入方法 1
+	//sql := "insert into user(user_id, nickname) values (?,?)"
+	//rs, err := db.Exec(sql, user.Userid, user.Nickname)
+	//if err != nil {
+	//	fmt.Println(err.Error())
+	//}
+	//if id,_ :=rs.LastInsertId(); id >0 {
+	//	fmt.Println("ok")
+	//}
+	//return
+
+
+	// 插入方法 2
+	stmt, err:= db.Prepare("insert into user(user_id, nickname) values (?, ?)")
+
+	fmt.Println(user.Userid)
+	fmt.Println(user.Nickname)
+	// 执行sql
+	rs, err := stmt.Exec(user.Userid, user.Nickname)
+	if err != nil {
+		log.Fatal(err.Error())
+		return
+	}
+
+	// 返回id
+	id, err := rs.LastInsertId()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	Id = int(id)
+
+	defer stmt.Close()
+	return
+
+}
+
 
 // 查询数据
 func getAll() (users []UserInfo, err error)  {
@@ -81,3 +150,4 @@ func getAll() (users []UserInfo, err error)  {
 	defer rows.Close()
 	return
 }
+
