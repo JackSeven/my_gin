@@ -1,0 +1,8 @@
+{
+  "mysql": {
+    "data_source": "root:anling123@tcp(127.0.0.1:3306)/test?charset=utf8",
+    "max_idle_conns": 10,
+    "max_open_conns": 100,
+    "conn_max_life_time": 7000
+  }
+}
