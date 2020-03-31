@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 )
 
+var DbConfig *mysqlConfig
+
 type mysqlConfig struct{
 	Mysql *mysqlNode `json:mysql`
 }
@@ -35,7 +37,10 @@ func LoadConfig() bool {
 			return false
 		}
 
-		fmt.Println("init mysqlconfig is ", MysqlConfig.Mysql.ConnMaxLifeTime)
+		fmt.Println("init ConnMaxLifeTime is ", MysqlConfig.Mysql.ConnMaxLifeTime)
+		fmt.Println("init DataSource is ", MysqlConfig.Mysql.DataSource)
+
+		DbConfig = MysqlConfig
 
 		return true
 	}

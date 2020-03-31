@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
+	_ "github.com/go-sql-driver/mysql" // 需要导入这个mysql库
 	"fmt"
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-sql-driver/mysql" // 需要导入这个mysql库
 	"log"
 	"math/rand"
 	"net/http"
