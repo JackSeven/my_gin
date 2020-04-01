@@ -14,6 +14,6 @@ func Index(c *gin.Context)  {
 		return
 	}
 
-	c.HTML(http.StatusOK, "login.html", gin.H{"title":"欢迎注册"})
+	c.HTML(http.StatusOK, "index.html", gin.H{"title":"夸克导航"})
 }
 

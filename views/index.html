@@ -1,11 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Hellow Go</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+	<title>夸克导航</title>
+	<meta name="keywords" content="夸克,夸克导航,夸克官网" />
+	<meta name="description" content="夸克导航，是一个简约无广告，还可以自定义网址的导航网站。认准官网网址，在手机浏览器上使用，夸克导航表现更出色" />
+	<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/main.css" />
+	<link rel="stylesheet" id="nightCss" type="text/css" href="./static/css/night.css" disabled />
 </head>
+
 <body>
-<h1>{{ .title }}</h1>
-{{ .content }}
+	<div id="app">
+		<div class="page-home">
+			<div class="logo"></div>
+			<div class="ornament-input-group"></div>
+			<div class="bookmark"></div>
+		</div>
+		<div class="icp"><a href="http://www.beian.miit.gov.cn/">浙ICP备14022562号-2</a></div>
+		<div class="page-search">
+			<div class="history">
+				<div class="emptyHistory"></div>
+				<ul class="content"></ul>
+			</div>
+			<ul class="suggestion"></ul>
+			<div class="bottom-row">
+				<div class="search-from">
+					<div class="input-bg">
+						<input class="search-input" placeholder="搜索或输入网址" />
+						<div class="empty-input"></div>
+					</div>
+					<div class="search-btn">取消</div>
+				</div>
+				<div class="shortcut">
+					<div class="content">
+						<ul class="shortcut1">
+							<li>www.</li>
+							<li>m.</li>
+							<li>wap.</li>
+							<li>.org</li>
+						</ul>
+						<ul class="shortcut2">
+							<li>.</li>
+							<li>/</li>
+							<li>.cn</li>
+							<li>.com</li>
+							<li>.org</li>
+						</ul>
+						<ul class="shortcut3">
+							<li>快搜:</li>
+							<li>百科</li>
+							<li>视频</li>
+							<li>豆瓣</li>
+							<li>微博</li>
+							<li>知乎</li>
+							<li>小说</li>
+							<li>新闻</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input class="s-temp" />
+	</div>
+	<script src="./static/js/lib/require.js"></script>
+	<script src="./static/js/main.js"></script>
+	<!-- 不重要的CSS最后加载 -->
+	<link rel="stylesheet" type="text/css" href="./static/css/lazy.css" />
 </body>
+<div style="display: none;">
+	<script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=4044997&web_id=4044997"></script>
+</div>
 </html>

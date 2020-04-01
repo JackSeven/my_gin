@@ -1,0 +1,443 @@
+<style>
+.menu-icon-layout[btn-icon] {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.menu-icon-layout.top[btn-icon] {
+    z-index:999;
+}
+.menu-area[btn-icon] {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    width:0.5rem;
+    height:0.44rem;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.menu-icon-index[btn-icon] {
+    display:inline-block;
+    width:0.2rem;
+    height:0.2rem;
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/hanbaobao_04adf60.png) no-repeat;
+    background-size:contain;
+}
+.has-background .menu-icon-index[btn-icon] {
+    display:inline-block;
+    width:0.2rem;
+    height:0.2rem;
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/hanbao_3cb39ea.png) no-repeat;
+    background-size:contain;
+}
+.fade-enter-active[btn-icon],.fade-leave-active[btn-icon] {
+    -webkit-transition:opacity 0.3s;
+    -o-transition:opacity 0.3s;
+    transition:opacity 0.3s;
+}
+.fade-enter[btn-icon],.fade-leave-to[btn-icon] {
+    opacity:0;
+}
+.dlg-window[btn] {
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:400;
+}
+/* 头部 */ .aside-header-and-paddingbottom[btn] {
+    width:2.5rem;
+    background:#ffffff;
+}
+.asideheader[btn] {
+    width:2.5rem;
+    height:1.6rem;
+    -webkit-box-shadow:0 0.01rem 0 0 #f8f8f8;
+    box-shadow:0 0.01rem 0 0 #f8f8f8;
+    overflow:hidden;
+}
+.menu-btn-padding[btn] {
+    width:0.5rem;
+    height:0.44rem;
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/hanbaobao_04adf60.png) no-repeat;
+    background-size:0.2rem 0.2rem;
+    background-position:center;
+    position:absolute;
+    top:0rem;
+    left:0rem;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.menuBtn[btn] {
+    display:inline-block;
+    width:0.16rem;
+    height:0.14rem;
+}
+.user-info[btn] {
+    width:2.2rem;
+    height:0.6rem;
+    margin:0.7rem 0 0.3rem 0.3rem;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:start;
+    -ms-flex-pack:start;
+    justify-content:flex-start;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    background:#ffffff;
+    position:relative;
+}
+.user-info img[btn] {
+    display:inline-block;
+    width:0.6rem;
+    height:0.6rem;
+    margin-right:0.15rem;
+    border-radius:100%;
+    overflow:hidden;
+}
+.login[btn] {
+    display:inline-block;
+    max-width:1.08rem;
+    font-family:PingFangSC-Regular;
+    font-size:0.18rem;
+    color:#000000;
+    line-height:0.6rem;
+    letter-spacing:0;
+    white-space:nowrap;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0.75rem;
+}
+/* 中心区域 */ .asidecontent[btn] {
+    margin-top:0.21rem;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    -webkit-box-flex:1 0 auto;
+    -ms-flex:1 0 auto;
+    flex:1 0 auto;
+    overflow:scroll;
+    background:#ffffff;
+}
+.asidecontent[btn]::-webkit-scrollbar {
+    display:none;
+}
+.menu-item[btn] {
+    display:block;
+    -webkit-box-pack:start;
+    -ms-flex-pack:start;
+    justify-content:flex-start;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    height:0.5rem;
+    line-height:0.5rem;
+}
+.menu-item a[btn] {
+    width:100%;
+    height:100%;
+    line-height:0.5rem;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    text-decoration:none;
+    color:#333;
+    position:relative;
+}
+.menu-item a[btn]:hover {
+    background:#f8f8f8;
+}
+.menu-icon[btn] {
+    display:inline-block;
+    width:0.2rem;
+    height:0.2rem;
+    overflow:hidden;
+    /* margin-left:0.3rem;
+    */ /* margin-right:0.15rem;
+    */ position:absolute;
+    top:0.15rem;
+    left:0.3rem;
+}
+.menu-desc[btn] {
+    position:absolute;
+    top:0;
+    left:0.65rem;
+    font-family:PingFangSC-Regular;
+    font-size:0.16rem;
+    color:#333333;
+    letter-spacing:0;
+}
+.menulist_guanzhu[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/guanzhu_0edf6fe.png) no-repeat;
+    background-size:cover;
+}
+.menulist_shoucang[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/shoucang_5ef89d6.png) no-repeat;
+    background-size:cover;
+}
+.menulist_xiaoxi[btn] {
+    background:url(../assets/img/xiaoxi.png) no-repeat;
+    background-size:cover;
+}
+.menulist_reyi[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/reyi_54c44c5.png) no-repeat;
+    background-size:cover;
+}
+.menulist_dingdan[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/dingdan_6391122.png) no-repeat;
+    background-size:cover;
+}
+.menulist_pifu[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/pifu_eef387c.png) no-repeat;
+    background-size:cover;
+}
+.menulist_fankui[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/fankui_cc44349.png) no-repeat;
+    background-size:cover;
+}
+.menulist_zuji[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/zuji_b531d96.png) no-repeat;
+    background-size:cover;
+}
+.menulist_shaixuan[btn] {
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/shaixuan_01108f8.png) no-repeat;
+    background-size:cover;
+}
+.dlg-window .slideInLeft[btn] {
+    -webkit-transform:translate3d(100%,0,0);
+    transform:translate3d(100%,0,0);
+}
+.dlg-window .slideOutLeft[btn] {
+    -webkit-transform:translate3d(0,0,0);
+    transform:translate3d(0,0,0);
+}
+/*竖屏 css*/ .dlg-bg[btn] {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    width:2.5rem;
+    height:100%;
+    background:#fff;
+    -webkit-transform:translate3d(0,0,0);
+    transform:translate3d(0,0,0);
+    position:fixed;
+    top:0;
+    left:-2.5rem;
+    overflow:scroll;
+}
+.dlg-bg[btn]::-webkit-scrollbar {
+    display:none;
+}
+.dlg-animate[btn] {
+    -webkit-transition:-webkit-transform 0.3s ease-in-out;
+    transition:transform 0.3s ease-in-out;
+}
+/*横屏 css*/ @media screen and (orientation:landscape) {
+    .dlg-bg[btn] {
+    width:2.5rem;
+    height:100%;
+    background:#fff;
+    -webkit-transform:translate3d(0,0,0);
+    transform:translate3d(0,0,0);
+    position:fixed;
+    top:0;
+    left:-2.5rem;
+    overflow:scroll;
+}
+.dlg-bg[btn]::-webkit-scrollbar {
+    display:none;
+}
+}/* 底部 */ .aside-footer[btn-bottom] {
+    width:2.5rem;
+    height:1.14rem;
+    background:#FFFFFF;
+}
+.setter-and-locationinfo[btn-bottom] {
+    width:2.5rem;
+    height:0.8rem;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:start;
+    -ms-flex-pack:start;
+    justify-content:flex-start;
+}
+.readme[btn-bottom] {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    width:2.2rem;
+    height:0.33rem;
+    padding-left:0.3rem;
+    font-family:PingFangSC-Regular;
+    font-size:0.12rem;
+    color:#CCCCCC;
+    letter-spacing:0;
+    border-top:0.01rem solid #F8F8F8;
+}
+.setter[btn-bottom] {
+    padding:0.2rem 0.1rem 0.1rem 0.2rem;
+    margin:0.05rem 0.05rem 0 0.1rem;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    -webkit-box-pack:start;
+    -ms-flex-pack:start;
+    justify-content:flex-start;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+}
+.setter-icon[btn-bottom] {
+    display:inline-block;
+    width:19px;
+    height:20px;
+    background:url(//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/spritelist_71904c7.png) no-repeat;
+    background-size:200px 100px;
+    background-position:-1px -80px;
+    margin:3px 0;
+}
+.setter-text[btn-bottom] {
+    margin-top:2px;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    height:0.16rem;
+    font-family:PingFangSC-Regular;
+    font-size:0.12rem;
+    color:#666666;
+    letter-spacing:0;
+}
+.heat[btn-bottom] {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    height:26px;
+    font-size:19px;
+    font-family:PingFangSC-Medium;
+    color:#666C82;
+    letter-spacing:0;
+    padding-left:6px;
+}
+.location-info[btn-bottom] {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    padding:0.2rem 0.1rem 0.1rem 0.1rem;
+    margin:0.05rem 0.05rem 0 0.05rem;
+}
+</style>
+
+<div id="personal-center" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 568px;">
+    <div id="personalcenter_style">
+
+    </div>
+    <div btn-icon="" class="menu-icon-layout top">
+        <div btn-icon="" class="menu-area">
+            <span btn-icon="" class="menu-icon-index"></span>
+        </div>
+        <div btn="" btn-icon="" class="dlg-window">
+            <div btn="" class="dlg-bg dlg-animate slideInLeft">
+                <div btn="" class="aside-header-and-paddingbottom">
+                    <div btn="" class="menu-btn-padding"></div>
+                    <div btn="" class="asideheader">
+                        <div btn="" class="user-info">
+                            <img btn="" src="//m.baidu.com/se/static/wiseatom/personalcenter/assets/img/default_icon_02f13d8.png" alt="head_icon" class="head-icon">
+                            <span btn="" class="login">登录</span></div>
+                    </div>
+                </div>
+                <div btn="" class="asidecontent">
+                    <ul btn="">
+                        <li btn="" class="menu-item">
+                            <a btn="" href="https://wappass.baidu.com/passport/?login&amp;tpl=wimn&amp;subpro=wimn&amp;sms=1&amp;regtype=1&amp;u=https%3A%2F%2Fmbd.baidu.com%2Fwebpage%3Faction%3Dicard%26type%3Dsubscribe%26channel%3Dwise_home">
+                                <span btn="" class="menu-icon menulist_guanzhu"></span>
+                                <span btn="" class="menu-desc">我的关注</span></a>
+                        </li>
+                        <li btn="" class="menu-item">
+                            <a btn="" href="https://wappass.baidu.com/passport/?login&amp;tpl=wimn&amp;subpro=wimn&amp;sms=1&amp;regtype=1&amp;u=http%3A%2F%2Fmysearch.pae.baidu.com%2Fpage%2Ffav%3Faction%3Dr">
+                                <span btn="" class="menu-icon menulist_shoucang"></span>
+                                <span btn="" class="menu-desc">我的收藏</span></a>
+                        </li>
+                        <li btn="" class="menu-item">
+                            <a btn="" href="https://wappass.baidu.com/passport/?login&amp;tpl=wimn&amp;subpro=wimn&amp;sms=1&amp;regtype=1&amp;u=https%3A%2F%2Fm.nuomi.com%2Fcomponent%2Forder_list%2Forder-list%2Forder-list.html%3Fclient%3Dwise%26status%3DorderAll%26newbrowser%3D1%26source%3D">
+                                <span btn="" class="menu-icon menulist_dingdan"></span>
+                                <span btn="" class="menu-desc">我的订单</span></a>
+                        </li>
+                        <li btn="" class="menu-item">
+                            <a btn="" href="https://wappass.baidu.com/passport/?login&amp;tpl=wimn&amp;subpro=wimn&amp;sms=1&amp;regtype=1&amp;u=https%3A%2F%2Fm.baidu.com%2F%3F%23iview%3Dskin">
+                                <span btn="" class="menu-icon menulist_pifu"></span>
+                                <span btn="" class="menu-desc">皮肤中心</span></a>
+                        </li>
+                        <li btn="" class="menu-item">
+                            <a btn="" href="http://ufosdk.baidu.com/?m=Client&amp;a=commonsubmit&amp;appid=517&amp;activityId=1&amp;needEmail=false&amp;bw=4E4670D693EBB4F4A983124C6D8D5207&amp;kw=&amp;tn=iphone&amp;pageid=6">
+                                <span btn="" class="menu-icon menulist_fankui"></span>
+                                <span btn="" class="menu-desc">用户反馈</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div btn-bottom="" btn="" class="aside-footer">
+                    <div btn-bottom="" class="setter-and-locationinfo">
+                        <div btn-bottom="" class="setter">
+                            <span btn-bottom="" class="setter-icon"></span>
+                            <span btn-bottom="" class="setter-text">设置</span></div>
+                        <div btn-bottom="" class="location-info">
+                            <span btn-bottom="" class="heat">16°</span>
+                            <span btn-bottom="" class="setter-text">杭州</span></div>
+                    </div>
+                    <div btn-bottom="" class="readme">©2020 Baidu 使用百度前必读</div></div>
+            </div>
+        </div>
+    </div>
+</div>
