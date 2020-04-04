@@ -2,10 +2,9 @@ package models
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql" // 需要导入这个mysql库
 	"fmt"
+	_ "github.com/go-sql-driver/mysql" // 需要导入这个mysql库
 	"my_gin/config"
-	"time"
 )
 
 
@@ -20,8 +19,6 @@ func InitDatabase() bool {
 	fmt.Println("init Database....")
 
 	if Mydb != nil {
-		fmt.Println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-		fmt.Println(time.Now().Unix())
 		return true
 	}
 

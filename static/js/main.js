@@ -406,6 +406,21 @@ require(['jquery'], function ($) {
 			Storage.history.unshift(text);
 			_.load();
 			storage.set("history", Storage.history);
+
+			$.ajax({
+				"url" : "/keyword",
+				"data" : {
+					"us" : text
+				},
+				"dateType": "json",
+				"method": "post",
+				"success" : function(msg){
+					if (msg.state != true){
+						console.log(msg);
+					}
+				}
+			});
+
 		},
 		empty: function () {
 			var _ = this;

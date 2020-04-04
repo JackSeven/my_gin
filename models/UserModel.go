@@ -1,7 +1,6 @@
 package models
 
-import "fmt"
-
+// 用户搜索
 type UserSearch struct {
 	Id         int    `json:"id"`
 	UserId     int    `json:"user_id"`
@@ -21,11 +20,7 @@ func UsAdd(us UserSearch) (id int64, err error)  {
 	if id ==0 {
 		id = 0
 		err = nil
-		fmt.Println("insert faild : ", id)
-
 	}
-
-	fmt.Println("insert id is : ", id)
 
 	return
 }
