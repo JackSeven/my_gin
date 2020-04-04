@@ -22,7 +22,7 @@ func initRouter() {
 	router.Static("/static", "./static")
 
 	// 运行
-	router.Run(":6001")
+	router.Run(":5432")
 }
 
 

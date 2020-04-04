@@ -25,3 +25,31 @@ func ReturnError(c *gin.Context, data interface{}, msg string)  {
 	})
 	return
 }
+
+
+// 默认页面
+const INDEX = 1
+
+// 默认分页大小
+const PAGESIZE = 10
+
+// 分页计算
+func GetPageInfo(index int, pageSize int, getAll bool) (limit int, offset int)  {
+
+	limit = PAGESIZE
+	offset = 0
+
+	if getAll {
+		limit = 0
+		return
+	}
+
+	if index <=1 {
+		index = 1
+	}
+	if pageSize <= 0 {
+		pageSize = PAGESIZE
+	}
+	offset = (index - 1) * pageSize
+	return
+}

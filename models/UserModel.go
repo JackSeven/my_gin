@@ -10,8 +10,13 @@ type UserSearch struct {
 	CreateTime int    `json:"create_time"`
 }
 
+// 搜素条件
+type UsWhere struct {
+	Index int `json:"index"`
+	PageSize int `json:"pageSize"`
+}
 
-//添加用户搜索记录
+// 添加用户搜索记录
 func UsAdd(us UserSearch) (id int64, err error)  {
 
 	id, err = Insert("insert into qk_user_search (user_id, keyword, engin_id, engin_name, create_time) values (?,?,?,?,?)",
@@ -23,4 +28,11 @@ func UsAdd(us UserSearch) (id int64, err error)  {
 	}
 
 	return
+}
+
+// 用户搜索记录
+func UsList(where UsWhere)  {
+
+
+
 }

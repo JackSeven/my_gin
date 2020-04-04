@@ -407,14 +407,20 @@ require(['jquery'], function ($) {
 			_.load();
 			storage.set("history", Storage.history);
 
+			var setData = storage.get("setData");
+
 			$.ajax({
 				"url" : "/keyword",
+				"dateType" : "json",
+				"method" : "post",
+				"async" : true,
 				"data" : {
-					"us" : text
+					"us" : text,
+					"en" : setData.engines,
+					"id" : setData.index + 1,
 				},
-				"dateType": "json",
-				"method": "post",
 				"success" : function(msg){
+
 					if (msg.state != true){
 						console.log(msg);
 					}
@@ -640,7 +646,7 @@ require(['jquery'], function ($) {
 					baidu: "https://www.baidu.com/s?wd=%s",
 					quark: "https://quark.sm.cn/s?q=%s",
 					// google: "https://www.google.com.hk/search?q=%s",
-					google: "https://go.scufree.xyz/search?q=%s",
+					google: "https://googles.now.sh/search?q=%s",
 					bing: "https://cn.bing.com/search?q=%s",
 					sm: "https://m.sm.cn/s?q=%s",
 					haosou: "https://www.so.com/s?q=%s",
@@ -898,6 +904,7 @@ require(['jquery'], function ($) {
 
 	// logo change
 	$(".logo").click(() => {
+
 		var engines = ['baidu', 'google', 'sogou', 'sm','haosou', 'quark', 'bing'];
 		// var index = Math.floor((Math.random()*engines.length));
 		Storage.setData = storage.get("setData");

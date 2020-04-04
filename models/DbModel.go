@@ -12,6 +12,7 @@ import (
 // 数据库对象指针
 var Mydb *sql.DB
 
+// 初始化数据库
 func InitDatabase() bool {
 
 	// 加载默认数据库配置

@@ -19,12 +19,12 @@ func UsAdd(c *gin.Context)  {
 
 	// 格式化为时间戳
 	create_time,_ := strconv.Atoi(fmt.Sprintf("%v",time.Now().Unix()))
-
+	engine_id, _ := strconv.Atoi(c.PostForm("id"))
 	us := models.UserSearch{
 		UserId:     1,
 		Keyword:    keyword,
-		EnginId:    1,
-		EnginName:  "baidu",
+		EnginId:    engine_id,
+		EnginName:  c.PostForm("en"),
 		CreateTime: create_time,
 	}
 
@@ -38,5 +38,22 @@ func UsAdd(c *gin.Context)  {
 	return
 
 }
+
+// 获取搜索历史记录
+func UsList(c *gin.Context)  {
+
+	//index := c.Query("index")
+	//pageSize := c.Query("pageSize")
+	//
+	//
+
+
+
+}
+
+
+
+
+
 
 
