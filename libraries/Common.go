@@ -3,6 +3,7 @@ package libraries
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 
@@ -34,7 +35,10 @@ const INDEX = 1
 const PAGESIZE = 10
 
 // 分页计算
-func GetPageInfo(index int, pageSize int, getAll bool) (limit int, offset int)  {
+func GetPageInfo(i string, p string, getAll bool) (limit int, offset int)  {
+
+	index, _ := strconv.Atoi(i)
+	pageSize, _ := strconv.Atoi(p)
 
 	limit = PAGESIZE
 	offset = 0
@@ -43,13 +47,15 @@ func GetPageInfo(index int, pageSize int, getAll bool) (limit int, offset int)  
 		limit = 0
 		return
 	}
-
 	if index <=1 {
 		index = 1
 	}
 	if pageSize <= 0 {
 		pageSize = PAGESIZE
 	}
+
+	limit = pageSize
 	offset = (index - 1) * pageSize
+
 	return
 }

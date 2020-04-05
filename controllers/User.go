@@ -40,19 +40,38 @@ func UsAdd(c *gin.Context)  {
 }
 
 // 获取搜索历史记录
-func UsList(c *gin.Context)  {
+func UsList(c *gin.Context) {
 
-	//index := c.Query("index")
-	//pageSize := c.Query("pageSize")
-	//
-	//
+	index := c.Query("index")
+	pageSize := c.Query("pageSize")
 
+	limit, offset := clib.GetPageInfo(index, pageSize, false)
 
+	where := map[string]int{
+		"limit" : limit,
+		"offset" : offset,
+	}
+
+	usRes := models.UsList(where)
+
+	clib.ReturnSuccess(c, usRes, "success")
 
 }
 
+// 获取一条用户信息
+func UserRow(c *gin.Context)  {
 
+	uid := c.Query("uid")
+	if uid == "" {
+		clib.ReturnError(c, "","缺少用户ID")
+	}
 
+	id, _ := strconv.Atoi(uid)
+	userRes := models.UserRow(id)
+
+	clib.ReturnSuccess(c, userRes, "success")
+	return
+}
 
 
 

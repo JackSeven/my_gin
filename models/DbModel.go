@@ -17,12 +17,10 @@ func InitDatabase() bool {
 
 	// 加载默认数据库配置
 	config.LoadConfig()
-	fmt.Println("init Database....")
 
 	if Mydb != nil {
 		return true
 	}
-
 
 	if db, err:=sql.Open("mysql", config.DbConfig.Mysql.DataSource); err !=nil {
 		fmt.Println("init Database failed")
@@ -59,3 +57,4 @@ func Insert(sql string, args ...interface{}) (int64, error)  {
 	return count, err
 
 }
+

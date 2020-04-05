@@ -37,9 +37,6 @@ func LoadConfig() bool {
 			return false
 		}
 
-		fmt.Println("init ConnMaxLifeTime is ", MysqlConfig.Mysql.ConnMaxLifeTime)
-		fmt.Println("init DataSource is ", MysqlConfig.Mysql.DataSource)
-
 		DbConfig = MysqlConfig
 
 		return true

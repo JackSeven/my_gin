@@ -18,5 +18,11 @@ func InitRouter() *gin.Engine {
 	// 添加搜索记录
 	router.POST("/keyword", controllers.UsAdd)
 
+	// 搜索历史记录
+	router.GET("/us/lists", controllers.UsList)
+
+	// 获取一条用户信息
+	router.GET("/user/row", controllers.UserRow)
+
 	return router
 }
