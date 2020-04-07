@@ -438,6 +438,25 @@ require(['jquery'], function ($) {
 	// 初始化搜索历史模块
 	searchHistory.init();
 
+	var engine = {
+		init : function () {
+			$.ajax({
+				"url" : "/engine/lists",
+				"dateType" : "json",
+				"method" : "get",
+				"async" : true,
+				"success" : function(msg){
+
+					if (msg.state != true){
+						console.log(msg);
+					}
+				}
+			});
+		}
+	}
+	// 初始化
+	engine.init();
+
 	/**
 	 * 更改地址栏URL参数
 	 * @param {string} param 参数
