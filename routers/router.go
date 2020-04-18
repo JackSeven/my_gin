@@ -13,7 +13,12 @@ func InitRouter() *gin.Engine {
 
 	// 首页
 	router.GET("/", controllers.Index)
+
+	// 首页
 	router.GET("/index", controllers.Index)
+
+	// 获取授权
+	router.GET("/login", controllers.Login)
 
 	// 添加搜索记录
 	router.POST("/keyword", controllers.UsAdd)
@@ -27,6 +32,9 @@ func InitRouter() *gin.Engine {
 
 	// 搜索引擎列表
 	router.GET("/engine/lists", controllers.Lists)
+
+
+
 
 	return router
 }
