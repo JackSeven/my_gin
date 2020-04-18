@@ -1,9 +1,12 @@
 package libraries
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"net"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 // 返回成功json
@@ -57,4 +60,43 @@ func GetPageInfo(i string, p string, getAll bool) (limit int, offset int)  {
 	offset = (index - 1) * pageSize
 
 	return
+}
+
+// 获取mac地址
+func GetMacAddr() (macAddr string)  {
+
+	netInterfaces, err := net.Interfaces()
+
+	if err!=nil {
+		fmt.Println("获取mac地址失败")
+		return
+	}
+
+	for _, v:= range netInterfaces {
+		macAddr = v.HardwareAddr.String()
+
+		if macAddr != "" {
+			return
+		}
+	}
+
+	return
+}
+
+
+// 计算执行时间差
+func ExecTime(tags string, start int64) (res int64)  {
+
+	if tags == "start" {
+		res := time.Now().UnixNano()
+		return res
+
+	}else{
+		end := time.Now().UnixNano()
+		diff := (end - start) / 1000
+		fmt.Println("相差微妙数：", diff)
+		res = diff
+		return
+	}
+
 }
