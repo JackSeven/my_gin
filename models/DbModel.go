@@ -8,15 +8,25 @@ import (
 )
 
 
-
 // 数据库对象指针
 var Mydb *sql.DB
 
+func init()  {
+	// 加载默认数据库配置
+	//config.LoadFile("db_mysql.pro.json","json")
+	//config.LoadConfig()
+
+	config.SetMysqlConfig()
+
+	a:=config.DbConfig
+	fmt.Println(a)
+
+	// 连接数据库
+	InitDatabase()
+}
+
 // 初始化数据库
 func InitDatabase() bool {
-
-	// 加载默认数据库配置
-	config.LoadConfig()
 
 	if Mydb != nil {
 		return true
@@ -31,13 +41,13 @@ func InitDatabase() bool {
 		fmt.Println("init Database success")
 	}
 
+	//dbClose()
+
 	return true
 }
 
 // 公共插入方法
 func Insert(sql string, args ...interface{}) (int64, error)  {
-
-	InitDatabase()
 
 	result, err:= Mydb.Exec(sql, args...)
 	if err!=nil {
@@ -58,3 +68,7 @@ func Insert(sql string, args ...interface{}) (int64, error)  {
 
 }
 
+// 延时关闭数据库链接
+func dbClose()  {
+	defer Mydb.Close()
+}

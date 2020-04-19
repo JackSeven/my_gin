@@ -52,8 +52,6 @@ func GenerateToken(param map[string]string) (token string)  {
 // 解密授权信息
 func ParseToken(token string) (*AuthToken, error)  {
 
-
-
 	authToken, err := jwt.ParseWithClaims(token, &AuthToken{}, func(token *jwt.Token) (i interface{}, err error) {
 		return secret, nil
 	})

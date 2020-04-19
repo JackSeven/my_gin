@@ -10,7 +10,6 @@ func InitRouter() *gin.Engine {
 	router := gin.Default()
 	router.LoadHTMLGlob("views/*")
 
-
 	// 首页
 	router.GET("/", controllers.Index)
 
@@ -29,11 +28,8 @@ func InitRouter() *gin.Engine {
 	// 获取一条用户信息
 	router.GET("/user/row", controllers.UserRow)
 
-
 	// 搜索引擎列表
 	router.GET("/engine/lists", controllers.Lists)
-
-
 
 
 	return router

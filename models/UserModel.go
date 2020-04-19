@@ -49,9 +49,6 @@ func UsAdd(us UserSearch) (id int64, err error)  {
 // 用户搜索记录
 func UsList(w map[string]int) (resRows []UserSearch) {
 
-	InitDatabase()
-
-	fmt.Println("uuuuuuurrrrrrrrr")
 	UserRow(1)
 
 	rows, err := Mydb.Query("select * from qk_user_search where 1=1  order by id desc limit ? offset ?", w["limit"], w["offset"])
@@ -82,8 +79,6 @@ func UsList(w map[string]int) (resRows []UserSearch) {
 
 // 获取一条用户信息
 func UserRow(id int) (userRes []UserInfo)  {
-
-	InitDatabase()
 
 	rows, err := Mydb.Query("select * from qk_user_info where id = ?", id)
 	if err != nil {

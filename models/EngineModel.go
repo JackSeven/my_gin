@@ -13,8 +13,6 @@ type EngineInfo struct {
 
 func Lists() (rows []EngineInfo) {
 
-	InitDatabase()
-
 	result, err := Mydb.Query("select * from qk_engine_info")
 	if err != nil {
 		fmt.Println("query engine info faild")
