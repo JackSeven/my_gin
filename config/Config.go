@@ -91,29 +91,29 @@ func SetMysqlConfig()(res bool)  {
 
 	DbConfig = &mysqlConfig{
 		Mysql: &mysqlNode{
-			DataSource : fmt.Sprintf("%s", item["data_source"]),
+			DataSource : item["data_source"].(string),
 		},
 	}
 
-
-	viper.Reset()
-	viper.SetConfigName("db.mysql.ini")
-	viper.AddConfigPath("./config/")
-	viper.SetConfigType("ini")
-
-	fmt.Println(item["data_source"])
-	fmt.Println(item["max_idle_conns"])
-	fmt.Println(item["max_open_conns"])
-	fmt.Println(item["conn_max_life_time"])
-
-
-	viper.Set("mysql.data_source", fmt.Sprintf("%s", item["data_source"]) )
-	viper.Set("mysql.max_idle_conns", fmt.Sprintf("%s", item["max_idle_conns"]) )
-	viper.Set("mysql.max_open_conns", fmt.Sprintf("%s", item["max_open_conns"]) )
-	viper.Set("mysql.conn_max_life_time", fmt.Sprintf("%s", item["conn_max_life_time"]) )
-	viper.WriteConfig()
-
-	fmt.Println("写入完毕")
+	//
+	//viper.Reset()
+	//viper.SetConfigName("db.mysql.ini")
+	//viper.AddConfigPath("./config/")
+	//viper.SetConfigType("ini")
+	//
+	//fmt.Println(item["data_source"])
+	//fmt.Println(item["max_idle_conns"])
+	//fmt.Println(item["max_open_conns"])
+	//fmt.Println(item["conn_max_life_time"])
+	//
+	//
+	//viper.Set("mysql.data_source", fmt.Sprintf("%s", item["data_source"]) )
+	//viper.Set("mysql.max_idle_conns", fmt.Sprintf("%s", item["max_idle_conns"]) )
+	//viper.Set("mysql.max_open_conns", fmt.Sprintf("%s", item["max_open_conns"]) )
+	//viper.Set("mysql.conn_max_life_time", fmt.Sprintf("%s", item["conn_max_life_time"]) )
+	//viper.WriteConfig()
+	//
+	//fmt.Println("写入完毕")
 
 	return true
 }

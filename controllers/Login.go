@@ -28,6 +28,7 @@ func Index(c *gin.Context)  {
 // 获取授权token
 func Login(c *gin.Context)  {
 
+
 	param := map[string]string {
 		"username": "admin",
 		"password":"123456",
@@ -37,7 +38,6 @@ func Login(c *gin.Context)  {
 
 	fmt.Println("get token...................")
 	fmt.Println(token)
-
 	fmt.Println("parse token...................")
 
 	info,err := myjwt.ParseToken(token)
