@@ -26,6 +26,7 @@ type mysqlNode struct {
 var ConfigPath = "./config/"
 
 var sqlConfigFile = "db_mysql.json"
+//var sqlConfigFile = "db_mysql_pro.json"
 
 var sqlConfigType = "json"
 

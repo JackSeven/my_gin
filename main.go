@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"my_gin/config"
 	"my_gin/routers"
 )
 
@@ -10,12 +12,12 @@ func main() {
 
 func initRouter() {
 
-	//// 加载配置
-	//res := config.LoadConfig()
-	//if res != true {
-	//	fmt.Println("init load config failed")
-	//}
-	//fmt.Println("load config ", res)
+	// 加载配置
+	res := config.LoadConfig()
+	if res != true {
+		fmt.Println("init load config failed")
+	}
+	fmt.Println("load config ", res)
 
 	// 初始化路由
 	router := routers.InitRouter()
