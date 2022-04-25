@@ -66,10 +66,6 @@ require(['jquery'], function ($) {
 				url: "https://xw.qq.com",
 				icon: "./static/icon/qqnews.png"
 			}, {
-				name: "贴吧",
-				url: "https://tieba.baidu.com",
-				icon: "./static/icon/tieba.png"
-			}, {
 				name: "网易",
 				url: "https://3g.163.com",
 				icon: "./static/icon/netease.png"
@@ -81,6 +77,11 @@ require(['jquery'], function ($) {
 				name: "小红书",
 				url: "https://www.xiaohongshu.com/",
 				icon: "./static/icon/xiaohongshu.png"
+			}, {
+				name: "小美派",
+				// url: "https://mp.weixin.qq.com/s/uhgofcfDeCxbYYlWex2aeQ",
+				url: "weixin://dl/business/?t=Uc4WhVFJQfb",
+				icon: "./static/icon/xiaomeipai.png"
 			}
 			];
 			for (var i = bookMark.length - 1; i > -1; i--) {
@@ -91,6 +92,17 @@ require(['jquery'], function ($) {
 				storage.set("setData", setData);
 			}
 		},
+
+		// 清除本地存储
+		restIndex: function() {
+			 Storage.setData.wallpaper = "";
+			 Storage.setData.logo = "";
+			 Storage.setData.bookcolor = "black";
+			 storage.set("setData", Storage.setData);
+			 loadStorage.init();
+			 location.reload();
+		},
+
 		/**
 		 * 加载设置数据 壁纸|LOGO|书签颜色|夜间模式
 		 */
@@ -130,6 +142,10 @@ require(['jquery'], function ($) {
 		}
 	};
 	loadStorage.setItem();
+
+	$("#nav-reset").click(function(){
+		loadStorage.restIndex();
+	});
 
 	/**
 	 * DOM长按事件
@@ -664,8 +680,7 @@ require(['jquery'], function ($) {
 				location.href = {
 					baidu: "https://www.baidu.com/s?wd=%s",
 					quark: "https://quark.sm.cn/s?q=%s",
-					// google: "https://www.google.com.hk/search?q=%s",
-					google: "https://googles.now.sh/search?q=%s",
+					google: "https://www.google.com.hk/search?q=%s",
 					bing: "https://cn.bing.com/search?q=%s",
 					sm: "https://m.sm.cn/s?q=%s",
 					haosou: "https://www.so.com/s?q=%s",
@@ -938,142 +953,133 @@ require(['jquery'], function ($) {
 		loadStorage.setItem();
 	});
 
-	// $(".logo").click(() => {
-	// // 	var browser = browserInfo();
-	// // 	if (browser == 'via') {
-	// // 		self.location = "folder://";
-	// // 	} else if (browser == 'x') {
-	// // 		self.location = "x:bm?sort=default";
-	// // 	}
-	// // }).longPress(() => {
-	// 	$('#app').append(`<div class="set-from">
-	// 		<div class="set-header">
-	// 			<div class="set-back"></div>
-	// 			<p class="set-logo">主页设置</p>
-	// 		</div>
-	// 		<ul class="set-option-from">
-	// 			<li class="set-option" data-value="engines">
-	// 				<p class="set-title">搜索引擎</p>
-	// 				<select class="set-select">
-	// 					<option value="quark">夸克</option>
-	// 					<option value="baidu">百度</option>
-	// 					<option value="google">谷歌</option>
-	// 					<option value="bing">必应</option>
-	// 					<option value="sm">神马</option>
-	// 					<option value="haosou">好搜</option>
-	// 					<option value="sogou">搜狗</option>
-	// 					<option value="diy">自定义</option>
-	// 				</select>
-	// 			</li>
-	// 			<li class="set-option" data-value="wallpaper">
-	// 				<p class="set-title">背景</p>
-	// 			</li>
-	// 			<li class="set-option" data-value="logo">
-	// 				<p class="set-title">LOGO</p>
-	// 			</li>
-	// 			<li class="set-option" data-value="bookcolor">
-	// 				<p class="set-title">图标颜色</p>
-	// 				<select class="set-select">
-	// 					<option value="black">暗色图标</option>
-	// 					<option value="white">浅色图标</option>
-	// 				</select>
-	// 				<p class="set-description">主页书签文字颜色</p>
-	// 			</li>
-	// 			<li class="set-option" data-value="nightMode">
-	// 				<p class="set-title">夜间模式</p>
-	// 				<select class="set-select">
-	// 					<option value="0">关闭</option>
-	// 					<option value="1">开启</option>
-	// 				</select>
-	// 			</li>
-	// 			<li class="set-option" data-value="delLogo">
-	// 				<p class="set-title">恢复默认背景和LOGO</p>
-	// 			</li>
-	// 		</ul>
-	// 		<input type="file" id="set-upload" />
-	// 	</div>`);
-
-	// 	$(".set-from").show();
-
-	// 	if (window.via) { // 只有VIA浏览器才能显示
-	// 		$('option[value=via]').show();
+	$("#nav-set").click(() => {
+	// 	var browser = browserInfo();
+	// 	if (browser == 'via') {
+	// 		self.location = "folder://";
+	// 	} else if (browser == 'x') {
+	// 		self.location = "x:bm?sort=default";
 	// 	}
+	// }).longPress(() => {
+		$('#app').append(`<div class="set-from">
+			<div class="set-header">
+				<div class="set-back"></div>
+				<p class="set-logo">首页设置</p>
+			</div>
+			<ul class="set-option-from">
+				<li class="set-option" data-value="engines">
+					<p class="set-title">搜索引擎</p>
+					<select class="set-select">
+						<option value="quark">夸克</option>
+						<option value="baidu">百度</option>
+						<option value="google">谷歌</option>
+						<option value="bing">必应</option>
+						<option value="sm">神马</option>
+						<option value="haosou">360</option>
+						<option value="sogou">搜狗</option>
+<!--						<option value="diy">自定义</option>-->
+					</select>
+				</li>
+				<li class="set-option" data-value="wallpaper">
+					<p class="set-title">首页背景</p>
+				</li>
+<!--				<li class="set-option" data-value="logo">-->
+<!--					<p class="set-title">LOGO</p>-->
+<!--				</li>-->
+<!--				<li class="set-option" data-value="bookcolor">-->
+<!--					<p class="set-title">图标颜色</p>-->
+<!--					<select class="set-select">-->
+<!--						<option value="black">暗色图标</option>-->
+<!--						<option value="white">浅色图标</option>-->
+<!--					</select>-->
+<!--					<p class="set-description">主页书签文字颜色</p>-->
+<!--				</li>-->
+				<li class="set-option" data-value="nightMode">
+					<p class="set-title">夜间模式</p>
+					<select class="set-select">
+						<option value="0">关闭</option>
+						<option value="1">开启</option>
+					</select>
+				</li>
+				<li class="set-option" data-value="delLogo">
+					<p class="set-title">恢复默认</p>
+				</li>
+				<li class="set-option" data-value="delLogo">
+					<p class="set-title">
+						<p>
+							<span><img style="width: 20px;height: auto" src="./static/img/wechat.png" alt=""></span>
+							<span><a href="weixin://dl/business/?t=Uc4WhVFJQfb"><span>关于我们</span></a></span>
+						</p>
+						
+					</p>
+				</li>
+								
 
-	// 	$.each(Storage.setData, function (i, n) {
-	// 		var select = $(".set-option[data-value=" + i + "]").find(".set-select");
-	// 		if (select) {
-	// 			select.val(n);
-	// 		}
-	// 	});
+			</ul>
+			<input type="file" id="set-upload" />
+		</div>`);
 
-	// 	$(".set-back").click(function () {
-	// 		$(".set-from").css("pointer-events", "none").removeClass("animation");
-	// 		$(".set-from").on('transitionend', function (evt) {
-	// 			if (evt.target !== this) {
-	// 				return;
-	// 			}
-	// 			$(".set-from").remove();
-	// 		});
-	// 	});
+		$(".set-from").show();
 
-	// 	$(".set-option").click(function () {
-	// 		var value = $(this).data("value");
-	// 		if (value === "wallpaper") {
-	// 			$("#set-upload").change(function () {
-	// 				var files = this.files;
-	// 				var reader = new FileReader();
-	// 				reader.readAsDataURL(files[0]);
-	// 				reader.addEventListener("load", function () {
-	// 					Storage.setData.wallpaper = this.result;
-	// 					storage.set("setData", Storage.setData);
-	// 					$("body").css("background-image", "url(" + Storage.setData.wallpaper + ")");
-	// 				});
-	// 			});
-	// 			$("#set-upload").click();
-	// 		} else if (value === "logo") {
-	// 			$("#set-upload").change(function () {
-	// 				var files = this.files;
-	// 				var reader = new FileReader();
-	// 				reader.readAsDataURL(files[0]);
-	// 				reader.addEventListener("load", function () {
-	// 					Storage.setData.logo = this.result;
-	// 					storage.set("setData", Storage.setData);
-	// 					$(".logo").html('<img src="' + Storage.setData.logo + '" />');
-	// 				});
-	// 			});
-	// 			$("#set-upload").click();
-	// 		} else if (value === "delLogo") {
-	// 			Storage.setData.wallpaper = "";
-	// 			Storage.setData.logo = "";
-	// 			Storage.setData.bookcolor = "black";
-	// 			storage.set("setData", Storage.setData);
-	// 			location.reload();
-	// 		} else if (value === "openurl") {
-	// 			open($(this).find('.set-description').text());
-	// 		}
-	// 	});
+		if (window.via) { // 只有VIA浏览器才能显示
+			$('option[value=via]').show();
+		}
 
-	// 	$(".set-select").change(function () {
-	// 		var dom = $(this),
-	// 			item = dom.parent().data("value"),
-	// 			value = dom.val();
-	// 		if (item === "engines" && value === "diy") {
-	// 			var engines = prompt("输入搜索引擎网址，（用“%s”代替搜索字词）");
-	// 			if (engines) {
-	// 				Storage.setData.diyEngines = engines;
-	// 			} else {
-	// 				dom.val(Storage.setData.engines);
-	// 				return;
-	// 			}
-	// 		}
-	// 		// 保存设置
-	// 		Storage.setData[item] = value;
-	// 		storage.set("setData", Storage.setData);
-	// 		// 应用设置
-	// 		loadStorage.setItem();
-	// 	});
-	// 	$(".set-from").addClass('animation');
-	// });
+		$.each(Storage.setData, function (i, n) {
+			var select = $(".set-option[data-value=" + i + "]").find(".set-select");
+			if (select) {
+				select.val(n);
+			}
+		});
+
+		$(".set-back").click(function () {
+			$(".set-from").css("pointer-events", "none").removeClass("animation");
+			$(".set-from").on('transitionend', function (evt) {
+				if (evt.target !== this) {
+					return;
+				}
+				$(".set-from").remove();
+			});
+		});
+
+		$(".set-option").click(function () {
+			var value = $(this).data("value");
+			if (value === "wallpaper") {
+				$("#set-upload").change(function () {
+					var files = this.files;
+					var reader = new FileReader();
+					reader.readAsDataURL(files[0]);
+					reader.addEventListener("load", function () {
+						Storage.setData.wallpaper = this.result;
+						storage.set("setData", Storage.setData);
+						$("body").css("background-image", "url(" + Storage.setData.wallpaper + ")");
+					});
+				});
+				$("#set-upload").click();
+			} else if (value === "logo") {
+				$("#set-upload").change(function () {
+					var files = this.files;
+					var reader = new FileReader();
+					reader.readAsDataURL(files[0]);
+					reader.addEventListener("load", function () {
+						Storage.setData.logo = this.result;
+						storage.set("setData", Storage.setData);
+						$(".logo").html('<img src="' + Storage.setData.logo + '" />');
+					});
+				});
+				$("#set-upload").click();
+			} else if (value === "delLogo") {
+				loadStorage.restIndex();
+			} else if (value === "openurl") {
+				open($(this).find('.set-description').text());
+			}
+		});
+
+		$(".set-select").change(function () {
+			$('.logo').click();
+		});
+		$(".set-from").addClass('animation');
+	});
 
 	// 下滑进入搜索
 	require(['touchSwipe'], function () {
@@ -1107,5 +1113,6 @@ require(['jquery'], function ($) {
 			}
 		});
 	});
+
 
 })
