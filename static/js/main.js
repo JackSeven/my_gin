@@ -80,7 +80,7 @@ require(['jquery'], function ($) {
 			}, {
 				name: "小美派",
 				// url: "https://mp.weixin.qq.com/s/uhgofcfDeCxbYYlWex2aeQ",
-				url: "weixin://dl/business/?t=Uc4WhVFJQfb",
+				url: "https://wxaurl.cn/Yctu1G6iEwr",
 				icon: "./static/icon/xiaomeipai.png"
 			}
 			];
@@ -936,10 +936,10 @@ require(['jquery'], function ($) {
 		$('#bar').toggle(5);
 	});
 
+	var engines = ['baidu', 'google', 'sogou', 'sm','haosou', 'quark', 'bing'];
+
 	// logo change
 	$(".logo").click(() => {
-
-		var engines = ['baidu', 'google', 'sogou', 'sm','haosou', 'quark', 'bing'];
 		// var index = Math.floor((Math.random()*engines.length));
 		Storage.setData = storage.get("setData");
 		var index = Storage.setData.index;
@@ -953,7 +953,7 @@ require(['jquery'], function ($) {
 		loadStorage.setItem();
 	});
 
-	$("#nav-set").click(() => {
+	$(".nav-set").click(() => {
 	// 	var browser = browserInfo();
 	// 	if (browser == 'via') {
 	// 		self.location = "folder://";
@@ -1008,7 +1008,7 @@ require(['jquery'], function ($) {
 					<p class="set-title">
 						<p>
 							<span><img style="width: 20px;height: auto" src="./static/img/wechat.png" alt=""></span>
-							<span><a href="weixin://dl/business/?t=Uc4WhVFJQfb"><span>关于我们</span></a></span>
+							<span><a href="https://wxaurl.cn/Yctu1G6iEwr"><span>关于我们</span></a></span>
 						</p>
 						
 					</p>
@@ -1072,13 +1072,44 @@ require(['jquery'], function ($) {
 				loadStorage.restIndex();
 			} else if (value === "openurl") {
 				open($(this).find('.set-description').text());
+			} else if (value === 'engines') {
+				$(".set-select").change(function () {
+					if ($(this).closest('.set-option').attr('data-value') == 'engines') {
+						var value = $(this).val();
+						Storage.setData['engines'] = value;
+						var i = 0;
+						for(var k in engines){
+						 	var v = engines[k];
+						 	if (v == value) {
+						 		var i = k;
+							}
+						}
+						Storage.setData['index'] = i;
+						Storage.setData['logo']    = './static/img/engine/' + engines[i] + '.png';
+						storage.set("setData", Storage.setData);
+						loadStorage.setItem();
+					}
+				});
+			} else if (value === 'nightMode') {
+				if (Storage.setData.nightMode == undefined) {
+					Storage.setData['nightMode'] = "0";
+					storage.set("setData", Storage.setData);
+				}
 			}
 		});
 
-		$(".set-select").change(function () {
-			$('.logo').click();
-		});
 		$(".set-from").addClass('animation');
+
+		$(".set-option").change(function () {
+			var value = $(this).find('.set-select').val();
+			if (value == 1) {
+				Storage.setData['nightMode'] = "1";
+			} else {
+				Storage.setData['nightMode'] = "0";
+			}
+			storage.set("setData", Storage.setData);
+			loadStorage.setItem();
+		});
 	});
 
 	// 下滑进入搜索
